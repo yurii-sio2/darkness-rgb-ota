@@ -1,0 +1,54 @@
+[
+    {
+        "name": "config-wifi.lua",
+        "size": 244
+    },
+    {
+        "name": "config.lua",
+        "size": 384
+    },
+    {
+        "name": "init_common.lua",
+        "size": 2206
+    },
+    {
+        "name": "init_stairs.lua",
+        "size": 2205
+    },
+    {
+        "name": "LICENSE",
+        "size": 35149
+    },
+    {
+        "name": "light-mode-controller.lua",
+        "size": 6616
+    },
+    {
+        "name": "light-sensor.lua",
+        "size": 735
+    },
+    {
+        "name": "mode-led-controller.lua",
+        "size": 4261
+    },
+    {
+        "name": "mqtt-client.lua",
+        "size": 2349
+    },
+    {
+        "name": "rgb-led-driver.lua",
+        "size": 6440
+    },
+    {
+        "name": "start-program.lua",
+        "size": 311
+    },
+    {
+        "name": "update.lua",
+        "size": 3645
+    },
+    {
+        "name": "version.txt",
+        "size": 1
+    }
+]
