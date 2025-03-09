@@ -1,5 +1,5 @@
-dofile("light-sensor.lua");
-dofile("rgb-led-driver.lua")
+dofile(activeFolder .. "light-sensor.lua");
+dofile(activeFolder .. "rgb-led-driver.lua")
 
 local MODE_RANDOM_BY_MOVE = 0
 local MODE_WHITE_BY_MOVE = 1

@@ -1,5 +1,5 @@
 {
-    "version": 1741526680,
+    "version": 1741528734,
     "fileList": [
         {
             "name": "config-wifi.lua",
@@ -11,11 +11,11 @@
         },
         {
             "name": "init-common.lua",
-            "size": 2234
+            "size": 2282
         },
         {
             "name": "light-mode-controller.lua",
-            "size": 6616
+            "size": 6648
         },
         {
             "name": "light-sensor.lua",
@@ -31,11 +31,11 @@
         },
         {
             "name": "start-program.lua",
-            "size": 311
+            "size": 359
         },
         {
             "name": "update.lua",
-            "size": 5290
+            "size": 5094
         }
     ]
 }

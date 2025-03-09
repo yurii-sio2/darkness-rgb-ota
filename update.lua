@@ -4,11 +4,11 @@ local cjson = require("cjson")
 local UPDATE_BASE_URL = "https://yurii-sio2.github.io/darkness-rgb-ota/"
 local VERSION_FILE = "version.txt"
 local ACTIVE_FOLDER_FILE = "active_folder.txt"
-local version_a = "version_a"
-local version_b = "version_b"
+local version_a = "a"
+local version_b = "b"
 
 local function getActiveFolder()
-    local activeFolder = "version_a"
+    local activeFolder = version_a
     if file.open(ACTIVE_FOLDER_FILE, "r") then
         activeFolder = file.readline():gsub("\n", "")
         file.close()
@@ -107,7 +107,7 @@ local function update()
     print("Checking for updates...")
 
     local activeFolder = getActiveFolder()
-    local inactiveFolder = (activeFolder == "version_a") and "version_b" or "version_a"
+    local inactiveFolder = (activeFolder == version_a) and version_b or version_a
 
     if not checkFreeSpace(100) then
         print("Not enough free space to proceed with the update.")

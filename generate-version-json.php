@@ -12,7 +12,7 @@ function getFileListAndRename($directory) {
 	// Open directory
 	if ($handle = opendir($directory)) {
 		while (false !== ($entry = readdir($handle))) {
-			$entryNew = str_replace('version_a_', '', $entry);
+			$entryNew = str_replace('a_', '', $entry);
 			if (!is_dir("$directory/$entry") && !in_array($entry, $excludeFileNames)) {
 				rename($entry, $entryNew);
 				$files[] = $entryNew;
@@ -64,7 +64,8 @@ function cleanConfigFile($filePath) {
 		// Check if the line contains 'wifiCnf.pwd' or 'wifiCnf.ssid'
 		if (strpos($line, 'wifiCnf.pwd') !== false || strpos($line, 'wifiCnf.ssid') !== false) {
 			// Remove characters between quotes, keeping the quotes
-			$line = preg_replace('/"([^"]*)"/', '"$1"', $line);
+			$line = preg_replace('/"([^"]*)"/', '""', $line);
+			// echo $line . "\n";
 		}
 	}
 

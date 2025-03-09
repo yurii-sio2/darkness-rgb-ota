@@ -1,8 +1,8 @@
 -- dofile("mqtt-client.lua");
 
-dofile("config.lua");
-dofile("config-wifi.lua");
-dofile("light-mode-controller.lua");
+dofile(activeFolder .. "config.lua");
+dofile(activeFolder .. "config-wifi.lua");
+dofile(activeFolder .. "light-mode-controller.lua");
 
 local lightModeController = LightModeController.init(ledsCnf, lighSensorCnf)
 

@@ -7,7 +7,7 @@ stopButtonPin = 2     -- GPIO4
 onboardLedPin = 4
 workingModeLedPin = 8        -- GPIO15
 
-dofile("mode-led-controller.lua")
+dofile(activeFolder .. "mode-led-controller.lua")
 local workingModeLed = WorkingModeLed.init(workingModeLedPin)
 workingModeLed:setModeStarting()
 
@@ -16,7 +16,7 @@ function startup()
     startTimer:stop()
 
     workingModeLed:setModeWorking()
-    dofile("start-program.lua");
+    dofile(activeFolder .. "start-program.lua");
 end
 
 gpio.mode(stopButtonPin, gpio.INPUT)
@@ -50,7 +50,7 @@ startTimer:alarm(
                 print( 'debug mode is on')
                 file.close()
             
-                dofile("debug.lua")
+                dofile(activeFolder .. "debug.lua")
             else
                 startup()
 			end
