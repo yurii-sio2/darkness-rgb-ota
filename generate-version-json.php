@@ -1,9 +1,10 @@
 <?php
 
-function getFileList($directory) {
+function getFileListAndRename($directory) {
 	$excludeFileNames = [
 		'file-list.json',
-		'generate-version-json.php'
+		'generate-version-json.php',
+		'process-files.bat',
 	];
 
 	$files = [];
@@ -11,14 +12,16 @@ function getFileList($directory) {
 	// Open directory
 	if ($handle = opendir($directory)) {
 		while (false !== ($entry = readdir($handle))) {
+			$entryNew = str_replace('version_a_', '', $entry);
 			if (!is_dir("$directory/$entry") && !in_array($entry, $excludeFileNames)) {
-				$files[] = $entry;
+				rename($entry, $entryNew);
+				$files[] = $entryNew;
 			}
 		}
 		closedir($handle);
 	}
 
-	return $files;
+	return array_unique($files);
 }
 
 function getFileSizes($files, $directory) {
@@ -48,9 +51,39 @@ function saveToFileListJson($fileDetails) {
 	}
 }
 
+function cleanConfigFile($filePath) {
+	if (!file_exists($filePath)) {
+		echo "File not found!";
+		return;
+	}
+
+	$content = file_get_contents($filePath);
+	$lines = explode("\n", $content);
+
+	foreach ($lines as &$line) {
+		// Check if the line contains 'wifiCnf.pwd' or 'wifiCnf.ssid'
+		if (strpos($line, 'wifiCnf.pwd') !== false || strpos($line, 'wifiCnf.ssid') !== false) {
+			// Remove characters between quotes, keeping the quotes
+			$line = preg_replace('/"([^"]*)"/', '"$1"', $line);
+		}
+	}
+
+	$cleanedContent = implode("\n", $lines);
+
+	if (file_put_contents($filePath, $cleanedContent)) {
+		echo "File updated successfully!";
+	} else {
+		echo "Failed to write to file!";
+	}
+}
+
+
 function generateAndSaveFileList() {
 	$directory = __DIR__; // Current directory
-	$files = getFileList($directory);
+	$files = getFileListAndRename($directory);
+	
+	cleanConfigFile('config.lua');
+	
 	$fileDetails = getFileSizes($files, $directory);
 	saveToFileListJson($fileDetails);
 }

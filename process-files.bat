@@ -1,0 +1,1 @@
+php generate-version-json.php

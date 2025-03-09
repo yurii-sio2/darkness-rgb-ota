@@ -1,7 +1,7 @@
 local startTimer = tmr.create()
 
 moveSensorPin1 = 1     -- GPIO5
-moveSensorPin2 = -1    -- use value 0 (GPIO16) for 2-nd sensor
+moveSensorPin2 = (sensors_count == 1) and -1 or 0		-- use value 0 (GPIO16) for 2-nd sensor
 
 stopButtonPin = 2     -- GPIO4
 onboardLedPin = 4
