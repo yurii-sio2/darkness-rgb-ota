@@ -11,11 +11,10 @@ function getFileList($directory) {
 	// Open directory
 	if ($handle = opendir($directory)) {
 		while (false !== ($entry = readdir($handle))) {
-		// Skip directories and the 'file-list.json' file
-		if (!is_dir("$directory/$entry") && !in_array($entry, $excludeFileNames)) {
-			$files[] = $entry;
+			if (!is_dir("$directory/$entry") && !in_array($entry, $excludeFileNames)) {
+				$files[] = $entry;
+			}
 		}
-	}
 		closedir($handle);
 	}
 
@@ -37,7 +36,10 @@ function getFileSizes($files, $directory) {
 }
 
 function saveToFileListJson($fileDetails) {
-	$jsonContent = json_encode($fileDetails, JSON_PRETTY_PRINT);
+	$jsonContent = json_encode([
+		'version' => time(),
+		'fileList' => $fileDetails
+	], JSON_PRETTY_PRINT);
 
 	if (file_put_contents('file-list.json', $jsonContent)) {
 		echo "File list saved to file-list.json\n";

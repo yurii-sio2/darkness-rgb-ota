@@ -3,7 +3,7 @@
 
  local UPDATE_BASE_URL = "http://your-server.com/update/"
  local VERSION_FILE = "version.txt"
- local ACTIVE_FOLDER_FILE = "active_folder.txt"
+ local ACTIVE_FOLDER_FILE = "/active_folder.txt"
  local version_a = "version_a"
  local version_b = "version_b"
 
